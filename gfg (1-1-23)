@@ -1,0 +1,20 @@
+//Given a number n, find count of all binary sequences of length 2n such that sum of first n bits is same as sum of last n bits.
+//The anwer can be very large. So, you have to return answer modulo 109+7.
+Approach:- in this problem ,just like two boxes , n and n .we had to check both side no. of ones/zeroes.for that we use the mathematiical formula of combinatiion 
+Ncr=(n+1-r/r)*Nc(r-1). We swuare this for getting the ans because it every place we can store either 1 or 0 ,so total possibilities will be square of this.
+class Solution
+{
+    public int  compute_value(int n)
+    {
+        // code here
+        long ans=1;
+        long mod=1000000007;
+        long c=1;
+        for(int i=1;i<=n;i++){
+            c=((((n+1-i)*c)%mod)*((1/i)))%mod;
+            long temp=(ans*ans)%mod;
+            ans=(ans+temp)%mod;
+        }
+        return (int)ans;
+    }
+}
